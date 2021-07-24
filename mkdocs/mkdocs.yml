@@ -1,4 +1,4 @@
-site_name: Show Test Var
+site_name: FastQC
 
 theme:
   name: 'readthedocs'

@@ -1,4 +1,4 @@
-<project name="ShowTestVar" default="jar"  basedir=".">
+<project name="FastQC" default="jar"  basedir=".">
 	
     <!-- Use this to reference the BioLockJ from any location. -->
     <!-- Requires that variable "BLJ" exists in your system environment. -->
