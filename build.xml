@@ -1,0 +1,59 @@
+<project name="ShowTestVar" default="jar"  basedir=".">
+	
+    <!-- Use this to reference the BioLockJ from any location. -->
+    <!-- Requires that variable "BLJ" exists in your system environment. -->
+    <property environment="env"/>
+    <property name="BLJ" value="${env.BLJ}"/>
+
+    <!-- Use this to reference the BioLockJ from a peer directory -->
+    <!-- Requires that this project folder is stored in the same dir as the BioLockJ folder. -->
+    <!-- 
+    <property name="BLJ" value="../BioLockJ"/>
+    -->
+
+    <!-- This is the same regardless of how ${BLJ} was set. -->
+    <property name="BLJ.JAR" value="${BLJ}/dist/BioLockJ.jar"/>
+
+	<path id="lib.path">
+		<fileset dir="${BLJ}"/>
+	</path>
+
+    <target name="blj">
+        <echo message="BLJ: ${BLJ}"/>
+	<echo message="BLJ.Jar: ${BLJ.JAR}"/>
+        <available file="${BLJ.JAR}" property="blj.jar.present"/>
+    </target>
+
+    <target name="clean" depends="blj" if="blj.jar.present">
+        <delete dir="dist"/>
+        <delete dir="bin"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="bin"/>
+        <javac srcdir="src" destdir="bin" classpathref="lib.path"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/${ant.project.name}.jar" basedir="bin">
+        </jar>
+    </target>
+
+    <target name="docs" depends="jar">
+        <delete dir="mkdocs/docs"/>
+        <mkdir dir="mkdocs/docs"/>
+        <java classpath="${BLJ.JAR}:dist/${ant.project.name}.jar" classname="biolockj.api.BuildDocs">
+            <arg value="mkdocs/docs"/>
+            <arg value="com"/>
+        </java>
+        <move file="mkdocs/docs/all-modules.md" tofile="mkdocs/docs/index.md" />
+    </target>
+
+    <target name="userguide" depends="docs">
+        <exec executable="mkdocs" dir="mkdocs">
+            <arg value="build"/>
+        </exec>
+    </target>
+
+</project>
