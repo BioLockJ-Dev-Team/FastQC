@@ -107,13 +107,13 @@ Using the same docker image for both builds reduces the chances of conflicts ari
 
 Build your jar file using the ant build process:
 ```
-cd ShowTestVar
+cd FastQC
 ant jar
 ```
 
 Compress your demo folder using:
 ```
-cd ShowTestVar
+cd FastQC
 zip -r -X demo.zip demo
 ```
 
