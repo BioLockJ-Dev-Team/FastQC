@@ -11,6 +11,12 @@ biolockj ${BLJ}/templates/myFirstPipeline/myFirstPipeline.properties
 
 For more information about how to create BioLockJ modules and for other examples, see [the BioLockJ external modules resource repository](https://github.com/BioLockJ-Dev-Team/blj_ext_modules)
 
+This module is requires the [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) program.
+```
+fastqc --version
+```
+If this program is not installed on your machine, install it (see [link](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)) OR add `-d` when calling biolockj so use a pre-made docker image.
+
 ### Use this module (the latest release)
 
 See the [userguide pages for the modules in this project](mkdocs/docs/index.md).
@@ -29,6 +35,7 @@ wget $URL/${PROJ}.jar -P $PWD/mods
 wget $URL/demo.zip
 unzip demo.zip && rm demo.zip 
 biolockj --external-modules $PWD/mods ./demo/$CONFIG
+# biolockj -d --external-modules $PWD/mods ./demo/$CONFIG
 ```
 The example above will create a minimalist pipeline demonstrating the use of the Simple_FastQC module from the ShowTestVar project.  
 
