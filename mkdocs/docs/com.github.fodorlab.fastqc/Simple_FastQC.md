@@ -1,16 +1,17 @@
-# ShowShepVar
+# Simple_FastQC
 Add to module run order:                    
-`#BioModule com.github.fodorlab.envVar.ShowShepVar`
+`#BioModule com.github.fodorlab.fastqc.Simple_FastQC`
 
 ## Description 
-This module gets the value of the environment variable "SHEP" and prints its value to the log and an output file.
-The variable must be set in the environment using the local system or the -e parameter to BioLockJ.
+Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on sequence files.
 
 ## Properties 
 *Properties are the `name=value` pairs in the configuration file.*                   
 
-### ShowShepVar properties: 
-*none*
+### Simple_FastQC properties: 
+| Property| Description |
+| :--- | :--- |
+| *fastqc.param* | _string_ <br>Parameters used with FastQC; not validated in any way. Avoid using '-o/--outdir', this is automatically set to the module's output folder.<br>*default:*  *null* |
 
 ### General properties applicable to this module: 
 | Property| Description |
@@ -41,13 +42,14 @@ _version: 0.0.0_
 ## Docker 
 If running in docker, this module will run in a docker container from this image:<br>
 ```
-biolockjdevteam/biolockj_controller:v1.4.1
+biocontainers/fastqc:v0.11.9_cv8
 ```
 This can be modified using the following properties:<br>
-`ShowShepVar.imageOwner`<br>
-`ShowShepVar.imageName`<br>
-`ShowShepVar.imageTag`<br>
+`Simple_FastQC.imageOwner`<br>
+`Simple_FastQC.imageName`<br>
+`Simple_FastQC.imageTag`<br>
 
 ## Citation 
-BioModule created by Ivory Blakley as part of the test suite for BioLockJ.
+Module developed by Ivory Blakley to facilitate using FastQC with BioLockJ.                   
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is produced by [Babraham Bioinformatics](https://www.bioinformatics.babraham.ac.uk/index.html)
 

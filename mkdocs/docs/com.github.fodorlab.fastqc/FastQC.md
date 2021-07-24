@@ -1,15 +1,14 @@
-# ShowTestVar
+# FastQC
 Add to module run order:                    
-`#BioModule com.github.fodorlab.envVar.ShowTestVar`
+`#BioModule com.github.fodorlab.fastqc.FastQC`
 
 ## Description 
-This module gets the value of the environment variable "TEST_VAR" and prints its value to the log and an output file.
-The variable must be set in the environment using the local system or the -e parameter to BioLockJ.
+Run [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) on sequence files.
 
 ## Properties 
 *Properties are the `name=value` pairs in the configuration file.*                   
 
-### ShowTestVar properties: 
+### FastQC properties: 
 *none*
 
 ### General properties applicable to this module: 
@@ -41,13 +40,14 @@ _version: 0.0.0_
 ## Docker 
 If running in docker, this module will run in a docker container from this image:<br>
 ```
-biolockjdevteam/biolockj_controller:v1.4.1
+biocontainers/fastqc:v0.11.9_cv8
 ```
 This can be modified using the following properties:<br>
-`ShowTestVar.imageOwner`<br>
-`ShowTestVar.imageName`<br>
-`ShowTestVar.imageTag`<br>
+`FastQC.imageOwner`<br>
+`FastQC.imageName`<br>
+`FastQC.imageTag`<br>
 
 ## Citation 
-BioModule created by Ivory Blakley as part of the test suite for BioLockJ.
+Module developed by Ivory Blakley to facilitate using FastQC with BioLockJ.                   
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is produced by [Babraham Bioinformatics](https://www.bioinformatics.babraham.ac.uk/index.html)
 
