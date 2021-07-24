@@ -15,7 +15,7 @@ import biolockj.module.diy.GenMod;
 
 public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
 
-	public static final String PARAM = "fastqc.param";
+	private static final String PARAM = "fastqc.param";
 	
 	private static final String MAIN_FUNCTION = "runFastQC";
 	
@@ -45,7 +45,7 @@ public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
 		List<String> lines = new ArrayList<>();
 		lines.add( "function " + MAIN_FUNCTION + "(){" );
 		lines.add( "FILE=$1" );
-		lines.add( fastqc() + getFasqcParams() + " --outdir " + getOutputDir() + " $FILE" );
+		lines.add( fastqc() + getFastqcParams() + " --outdir " + getOutputDir().getAbsolutePath() + " $FILE" );
 		lines.add( "}" );
 		lines.add( "" );
 		// The function below will be run once.  
@@ -60,10 +60,11 @@ public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
 		return lines;
 	}
 	
-	private String getFasqcParams() {
-		String base = Config.getString( this, PARAM, "" );
-		if (base.trim().isEmpty()) return "";
-		else return " " + base.trim();
+	private String getFastqcParams() {
+//		String base = Config.getString( this, PARAM, "" );
+//		if (base.trim().isEmpty()) return "";
+//		else return " " + base.trim();
+		return "";
 	}
 	
 	private String fastqc() throws SpecialPropertiesException {
