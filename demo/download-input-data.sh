@@ -1,11 +1,15 @@
-!/bin/bash
+#!/bin/bash
 
 # See https://www.bioinformatics.babraham.ac.uk/projects/hicup/test_dataset/
 
-echo "Downloading data..."
+URL=http://www.bioinformatics.babraham.ac.uk/projects/hicup
+echo "Downloading data from $URL ..."
 
-wget http://www.bioinformatics.babraham.ac.uk/projects/hicup/test_dataset.tar.gz -P ../temp
-tar -xvzf ../temp/test_dataset.tar.gz
+cd ../temp
+echo "Working directory: $PWD"
+
+wget $URL/test_dataset.tar.gz
+tar -xvzf test_dataset.tar.gz
 mv test_dataset/*.fastq ../output/. && rm -rf test_dataset/
 
 echo "All done!"
