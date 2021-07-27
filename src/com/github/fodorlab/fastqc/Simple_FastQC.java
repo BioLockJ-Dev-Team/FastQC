@@ -14,16 +14,12 @@ import biolockj.module.SeqModule;
 import biolockj.module.diy.GenMod;
 
 public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
-
-	private static final String PARAM = "fastqc.param";
 	
 	private static final String MAIN_FUNCTION = "runFastQC";
 	
 	private static final String SHOW_INFO = "FastqcInfo";
 	
-	public Simple_FastQC() {
-		addNewProperty( PARAM, Properties.STRING_TYPE, "Parameters used with FastQC; not validated in any way. Avoid using '-o/--outdir', this is automatically set to the module's output folder." );
-	}
+	public Simple_FastQC() {}
 
 	@Override
 	public List<List<String>> buildScript( List<File> files ) throws Exception {
@@ -45,7 +41,7 @@ public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
 		List<String> lines = new ArrayList<>();
 		lines.add( "function " + MAIN_FUNCTION + "(){" );
 		lines.add( "FILE=$1" );
-		lines.add( fastqc() + getFastqcParams() + " --outdir " + getOutputDir().getAbsolutePath() + " $FILE" );
+		lines.add( fastqc() + " --outdir " + getOutputDir().getAbsolutePath() + " $FILE" );
 		lines.add( "}" );
 		lines.add( "" );
 		// The function below will be run once.  
@@ -58,13 +54,6 @@ public class Simple_FastQC extends ScriptModuleImpl implements ApiModule {
 		lines.add( "}" );
 		lines.add( "" );
 		return lines;
-	}
-	
-	private String getFastqcParams() {
-//		String base = Config.getString( this, PARAM, "" );
-//		if (base.trim().isEmpty()) return "";
-//		else return " " + base.trim();
-		return "";
 	}
 	
 	private String fastqc() throws SpecialPropertiesException {
